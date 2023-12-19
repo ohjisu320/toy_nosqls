@@ -9,7 +9,7 @@ list_score = [20,30,15,20,15] # 답항별 점수
 
 user_score = [0,0]
 
-# 사용자 입력
+# 사용자 입력 및 점수 계산
 for x in range(len(user_name)):
     input_user = input("사용자 이름 : ")
     user_name[x] = input_user
