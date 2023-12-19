@@ -8,11 +8,8 @@ def connect(col_name):
 col_answers=connect('answers')
 col_questions=connect('questions')
 col_users=connect('users')
-
 collection = connect('result') # result collection 연결
-# collection.insert_one() # result에 대입
 
-# collection.find({},{"user_name":1})
 
 def cal_score():
     user_name = ["",""]
