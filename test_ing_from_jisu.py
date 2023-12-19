@@ -21,18 +21,16 @@ format(col_users)
 pass
 pass
 list_col_questions=list(col_questions.find({}))
+
 while True :
-    username=input("User name : ")
+    username=input("User name : ") 
+    list_user_answer=[]
     for x in range(len(list_col_questions)) : # 문제 개수 만큼
         # db에서 받은 값 프린트
         user_answer=int(input("Answer : ")) #사용자의 입력 값 인풋
-        dict_user_answer = {}
-        dict_user_answer["answer"]=user_answer
-        result=col_users.insert_one({"user_name":username, "user_answer":user_answer})
-        user_id=result.inserted_id
-        
-
-
+        list_user_answer.append(user_answer)  
+    pass
+    user_result=col_users.insert_one({"user_name":username, "user_answer":list_user_answer})
     pass
 
 
