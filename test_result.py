@@ -1,3 +1,19 @@
+def connect(col_name):
+    from pymongo import MongoClient   # mongodb compass 띄우기
+    mongoClient = MongoClient("mongodb://192.168.0.165:27017")  # 동철님 mongodb에 connection
+    database = mongoClient["toy_nosqls"]  # database 연결하는 변수
+    collection = database[col_name]  # collection 작업 변수
+    return collection
+
+col_answers=connect('answers')
+col_questions=connect('questions')
+col_users=connect('users')
+
+collection = connect('result') # result collection 연결
+# collection.insert_one() # result에 대입
+
+# collection.find({},{"user_name":1})
+
 def cal_score():
     user_name = ["",""]
     user_answer = [[0,0,0,0,0],[0,0,0,0,0]]# one,two 사용자 답항 변수, 추후 초기화
