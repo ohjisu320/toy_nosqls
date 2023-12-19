@@ -1,5 +1,6 @@
 # 나의 업무
 # 1번 업무 끌어와서 문제와 answer 프린트
+# 지수님 : input 받아 넣기
 
 # 몽고db connect
 def connect():
@@ -62,17 +63,18 @@ list_questions = [
         ]
     }
 ]
+#while문으로 감싸줄 예정!
 
-username=input("User name : ")
-print("문제를 풀어주세요.")
-print("문항{}. {}")
-
+# username= 'user_one'
+username = input("User name : ")
+print("문제를 풀어주세요:")
 for i, question in enumerate(list_questions):
-    answer = input("{}에 대한 answer을 입력해주세요: ".format(question[i]['quesiton']))
+    print("문항{}. {}".format(i+1, (list_questions[i])))
+    # print("문항{}. {}".format(i, list_questions[i]['question']))
     user_answers[f"quesiton {i+1}"] = int(answer)
 
-for i, question in enumerate(list_questions):
-    print(f"{question['quesiton']}의 정답은 {question['answer'][user_answers[f'quesiton {i+1}']-1]}")
+# for i, question in enumerate(list_questions):
+#     print(f"{question['quesiton']}의 정답은 {question['answer'][user_answers[f'quesiton {i+1}']-1]}")
 
 # user_one_answers = {
 #     'quesiton 1': 5,
