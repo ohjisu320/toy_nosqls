@@ -19,10 +19,8 @@ def format(col_name) :
     col_name.delete_many({})
 format(col_users)
 
-pass
-pass
-
 def user_interface ():
+
     list_col_questions=list(col_questions.find({}))
     question = list(col_questions.find({}))
     answer = list(col_answers.find({}))
@@ -34,10 +32,10 @@ def user_interface ():
     for i in range(len(list_id)) :
         list_question.append(list_id[i]["question"])
         list_scores.append(list_score[i]["score"])
-
+    
     while True :
-        username=input("User name : ")
         list_user_answer=[]
+        username=input("User name : ")  
         question = list(col_questions.find({}))
         for i in range(len(question)): # 질문 갯수만큼 반복
             # db에서 받은 값 프린트
@@ -54,19 +52,19 @@ def user_interface ():
                     break  # 이미 5개를 출력했으므로 루프를 중단하고 다음 user_question으로 넘어갑니다.
             user_answer=int(input("Answer : ")) #사용자의 입력 값 인풋
             list_user_answer.append(user_answer)
-        # endsign=input("종료하려면 x : ")
-        # # x를 입력했을 때, 종료되게 해야 함.
-        # # if endsign!='x':    
-        # #     pass
-        # # else :
-        # #     break
+
             
         for i in range(len(list_col_questions)):
                 question = list_col_questions[i]["question"]
                 answer = list_user_answer[i]
                 score = int(list_scores[i])
                 col_users.insert_one({"user_name": username, "question": question, "user_answer": answer, "score":score})
-
+        
+        endsign=input("종료하려면 x : ")
+        if endsign!='x':    
+            pass
+        else :
+            break
         pass
 user_interface()
 
