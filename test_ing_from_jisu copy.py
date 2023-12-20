@@ -26,8 +26,12 @@ list_col_questions=list(col_questions.find({}))
 col_questions.find({},{})
 list_id=list(col_questions.find({},{"question":1}))
 list_question =[]
+list_score = list(col_questions.find({},{"score":1}))
+list_scores = []
 for i in range(len(list_id)) :
     list_question.append(list_id[i]["question"])
+    list_scores.append(list_score[i]["score"])
+
 
 
 
@@ -43,7 +47,8 @@ while True :
     for i in range(len(list_col_questions)):
         question = list_col_questions[i]["question"]
         answer = list_user_answer[i]
-        col_users.insert_one({"user_name": username, "question": question, "user_answer": answer})
+        score = int(list_scores[i])
+        col_users.insert_one({"user_name": username, "question": question, "user_answer": answer, "score":score})
     pass
 
 

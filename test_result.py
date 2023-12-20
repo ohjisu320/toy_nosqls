@@ -12,7 +12,7 @@ collection = connect('result') # result collection 연결
 
 
 def cal_score():
-    user_name = ["",""] # user 이름 받을 초기화 변수
+    user_name = col_users.find({},{}) # user 이름 받을 초기화 변수
     user_answer = [[0,0,0,0,0],[0,0,0,0,0]]# one,two 사용자 답항 변수, 추후 초기화
     list_answer = [3,2,4,4,5] # 정답에 대한 인덱스
 
