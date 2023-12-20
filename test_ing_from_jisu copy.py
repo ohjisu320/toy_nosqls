@@ -11,7 +11,7 @@ def connect(col_name):
 
 col_answers=connect('answers')
 col_questions=connect('questions')
-col_users=connect('users_copy')
+col_users=connect('users')
 
 # 초기화 시스템
 def format(col_name) :
