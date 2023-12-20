@@ -78,31 +78,34 @@ def dbconnect(collection_name):
     return collection
 
 
+def make_test() :
+    question_num=int(input("문제 개수를 입력하세요 : "))
+    answer_num=int(input("문항 개수를 입력하세요 : "))
 
-question_num=int(input("문제 개수를 입력하세요 : "))
-answer_num=int(input("문항 개수를 입력하세요 : "))
-
-print("문제와 선택지를 입력하세요.")
-list_question=[]
-list_answer=[]
-col_questions=dbconnect('questions')
-col_answers=dbconnect('answers')
-for x in range(question_num) :
-    question=input("문제{} : ".format(x+1))    
-    
-    answer_list = []
-    for y in range(answer_num) :
-        answer=input("문항{} : ".format(y+1))       
-        answer_list.append(answer)
+    print("문제와 선택지를 입력하세요.")
+    list_question=[]
+    list_answer=[]
+    col_questions=dbconnect('questions')
+    col_answers=dbconnect('answers')
+    for x in range(question_num) :
+        question=input("문제{} : ".format(x+1))    
         
-    score=input("점수 : ")
-    correct=input("정답  : ")    
-    question_result=col_questions.insert_one({"question":question, "score":score, "correct":correct})
-    question_id=question_result.inserted_id
+        answer_list = []
+        for y in range(answer_num) :
+            answer=input("문항{} : ".format(y+1))       
+            answer_list.append(answer)
+            
+        score=input("점수 : ")
+        correct=input("정답  : ")    
+        question_result=col_questions.insert_one({"question":question, "score":score, "correct":correct})
+        question_id=question_result.inserted_id
 
-    for answer in answer_list:
-        col_answers.insert_one({"answer":answer, "question_id":question_id})
-    pass
+        for answer in answer_list:
+            col_answers.insert_one({"answer":answer, "question_id":question_id})
+        pass
+
+make_test()
+
 # for x in range(question_num) :
 #     question=input("문제{} : ".format(x+1))
 #     for y in range(answer_num) :
