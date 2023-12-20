@@ -63,7 +63,7 @@ def user_interface ():
         endsign=input("종료하려면 x : ")
         if endsign!='x':    
             pass
-        else :
+        elif endsign=='x':
             break
         pass
 user_interface()
