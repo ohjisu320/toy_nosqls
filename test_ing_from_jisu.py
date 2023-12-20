@@ -2,6 +2,7 @@
 # 1번 업무 끌어와서 문제와 answer 프린트
 
 # 몽고db connect
+
 def connect(col_name):
     from pymongo import MongoClient   # mongodb compass 띄우기
     mongoClient = MongoClient("mongodb://192.168.0.14:27017")  # 동철님 mongodb에 connection
@@ -20,18 +21,54 @@ format(col_users)
 
 pass
 pass
-list_col_questions=list(col_questions.find({}))
 
-while True :
-    username=input("User name : ") 
-    list_user_answer=[]
-    for x in range(len(list_col_questions)) : # 문제 개수 만큼
-        # db에서 받은 값 프린트
-        user_answer=int(input("Answer : ")) #사용자의 입력 값 인풋
-        list_user_answer.append(user_answer)  
-    pass
-    user_result=col_users.insert_one({"user_name":username, "user_answer":list_user_answer})
-    pass
+def user_interface ():
+    list_col_questions=list(col_questions.find({}))
+    question = list(col_questions.find({}))
+    answer = list(col_answers.find({}))
+    col_questions.find({},{})
+    list_id=list(col_questions.find({},{"question":1}))
+    list_question =[]
+    list_score = list(col_questions.find({},{"score":1}))
+    list_scores = []
+    for i in range(len(list_id)) :
+        list_question.append(list_id[i]["question"])
+        list_scores.append(list_score[i]["score"])
+
+    while True :
+        username=input("User name : ")
+        list_user_answer=[]
+        question = list(col_questions.find({}))
+        for i in range(len(question)): # 질문 갯수만큼 반복
+            # db에서 받은 값 프린트
+            # print(str(x+1) + ". " + question[x]["question"]) # 질문 출력
+            print("{}. {}".format(i+1, question[i]["question"])) # 질문 출력
+            answer_count = 0 # answer 5개 나올수 있는 카운트 변수
+            answer = list(col_answers.find({}))
+            for j in range(len(answer)): # list화된 answer 갯수만큼 반복
+                if answer_count < 5:  # 5개의 answer 만 출력할수 있게 조건문 
+                    answers = answer[j]
+                    print(" "+str(answer_count+1) + ") " + answers["answer"]) # 답항 출력
+                    answer_count += 1 # 하나씩 추가
+                else:
+                    break  # 이미 5개를 출력했으므로 루프를 중단하고 다음 user_question으로 넘어갑니다.
+            user_answer=int(input("Answer : ")) #사용자의 입력 값 인풋
+            list_user_answer.append(user_answer)
+        # endsign=input("종료하려면 x : ")
+        # # x를 입력했을 때, 종료되게 해야 함.
+        # # if endsign!='x':    
+        # #     pass
+        # # else :
+        # #     break
+            
+        for i in range(len(list_col_questions)):
+                question = list_col_questions[i]["question"]
+                answer = list_user_answer[i]
+                score = int(list_scores[i])
+                col_users.insert_one({"user_name": username, "question": question, "user_answer": answer, "score":score})
+
+        pass
+user_interface()
 
 
 

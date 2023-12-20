@@ -27,7 +27,7 @@ format(col_users)
 # document_quesiton = col_questions.count_documents({})
 # document_answer = col_answers.count_documents({})
 
-username = input("User name : ")
+# username = input("User name : ")
 question = list(col_questions.find({}))
 answer = list(col_answers.find({}))
 

@@ -8,7 +8,7 @@ def connect(col_name):
 col_answers=connect('answers')
 col_questions=connect('questions')
 col_users=connect('users')
-collection = connect('result') # result collection 연결
+col_result = connect('result') # result collection 연결
 
 list_user_name = list(col_users.find({},{"_id":1,"user_name":1})) # 입력한 유저의 id/name 찾기
 list_user_answer = list(col_users.find({},{"user_answer":1})) # 유저의 답변 찾기
@@ -42,12 +42,38 @@ for x in range(int(num_repeat)): # 연산 시켜주는 구문
         else:
             user_score.append(0)
         pass
+print(user_score)
+list_user_score =[] # user_score의 묶음
+list_user_id=[] # user_id의 묶음
+for i in range(len(list_user_answer)): # range(10)
+    list_user_id.append(list_user_answer[i]['_id']) # list_user_id에 list_user_answer에 있는 모든 id값 append
+    pass
+for i in range(len(list_user_id)): # range(10)
+    col_users.update_many({'_id':list_user_id[i]},{"$set":{'user_score' : user_score[i]}},upsert=True) # users(collection)에 id가 같은 행에 user_score upsert
+    pass
 
-for x in range(10):
-    col_users.update_one({},{{"$set" : {"user_score":user_score[x]}}})
+
+list_user_names=[] # user name들의 list 
+for i in range(int(len(list_user_name)/5)): # = range(2)
+    user_names=list_user_name[i*5]['user_name'] # list_user_name에 있는 0, 5번째의 user name 추출
+    list_user_names.append(user_names) # list_user_names에 append
+print(list_user_names) # user name들의 list print로 확인
+
+pass 
+list_result_score=[] # list_result_score를 생성
+for i in range(int(len(list_user_name)/5)):  # range(2) 
+     # user_score=[0,30,0,20,15,0,0,0,0,0] 일 때, [0]+[1]+[2]+[3]+[4] / [5]+[6]+[7]+[8]+[9] 끼리 합하기
+    score_result=user_score[5*i]+user_score[5*i+1]+user_score[5*i+2]+user_score[5*i+3]+user_score[5*i+4]
+    list_result_score.append(score_result)
+    pass
+
+for i in range(int(len(list_user_name)/5)): 
+    # list_user_names=['one','two'] / list_score_result=[65,0]
+    # user_name : one / result_score : 65인 행 넣기
+    col_result.insert_one({"user_name":list_user_names[i], "result_score":list_result_score[i]})
 
 
-    
+
 # print(list_user_answer_sheet)
 
         # if list_answer[y] == user_answer[5*x + y]:

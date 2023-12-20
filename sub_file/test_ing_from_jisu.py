@@ -22,33 +22,15 @@ pass
 pass
 list_col_questions=list(col_questions.find({}))
 
-
-col_questions.find({},{})
-list_id=list(col_questions.find({},{"question":1}))
-list_question =[]
-list_score = list(col_questions.find({},{"score":1}))
-list_scores = []
-for i in range(len(list_id)) :
-    list_question.append(list_id[i]["question"])
-    list_scores.append(list_score[i]["score"])
-
-
-
-
-
 while True :
-    username=input("User name : ")
+    username=input("User name : ") 
     list_user_answer=[]
     for x in range(len(list_col_questions)) : # 문제 개수 만큼
         # db에서 받은 값 프린트
         user_answer=int(input("Answer : ")) #사용자의 입력 값 인풋
-        list_user_answer.append(user_answer)
+        list_user_answer.append(user_answer)  
     pass
-    for i in range(len(list_col_questions)):
-        question = list_col_questions[i]["question"]
-        answer = list_user_answer[i]
-        score = int(list_scores[i])
-        col_users.insert_one({"user_name": username, "question": question, "user_answer": answer, "score":score})
+    user_result=col_users.insert_one({"user_name":username, "user_answer":list_user_answer})
     pass
 
 
