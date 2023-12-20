@@ -71,24 +71,26 @@ def test_result():
         # list_user_names=['one','two'] / list_score_result=[65,0]
         # user_name : one / result_score : 65인 행 넣기
         col_result.insert_one({"user_name":list_user_names[i], "result_score":list_result_score[i]})
+    
+    print(list_user_answer_sheet)
 
+    if list_answer[y] == user_answer[5*x + y]:
 
-
-# print(list_user_answer_sheet)
-
-        # if list_answer[y] == user_answer[5*x + y]:
-
-    # for i in range(len(user_answer[x])): #문제에 대한 답변 입력
+        for i in range(len(user_answer[x])): #문제에 대한 답변 입력
+                
+            if user_answer[x]["user_answer"] == list_answer[i]:
+            user_score[x] += list_score[i]   
             
-    #     if user_answer[x]["user_answer"] == list_answer[i]:
-    #        user_score[x] += list_score[i]   
-        
-    #     print("사용자 : {}".format(user_name[x]))
-    #     print("답항 결과 : 1번 : {}, 2번 : {}, 3번 : {}, 4번 : {}, 5번 : {}".format(user_answer[x]["user_answer"],user_answer[x]["user_answer"],user_answer[x]["user_answer"],user_answer[x]["user_answer"],user_answer[x]["user_answer"]))
-    #     print("{}의 합산 점수 : {}".format(user_name[x],user_score[x]))
-    #     # user_score = 0
+            print("사용자 : {}".format(user_name[x]))
+            print("답항 결과 : 1번 : {}, 2번 : {}, 3번 : {}, 4번 : {}, 5번 : {}".format(user_answer[x]["user_answer"],user_answer[x]["user_answer"],user_answer[x]["user_answer"],user_answer[x]["user_answer"],user_answer[x]["user_answer"]))
+            print("{}의 합산 점수 : {}".format(user_name[x],user_score[x]))
+            # user_score = 0
 
-    # print("{}의 합산 점수 : {}".format(user_name[0],user_score[0]))
-    # print("{}의 합산 점수 : {}".format(user_name[1],user_score[1]))
+        print("{}의 합산 점수 : {}".format(user_name[0],user_score[0]))
+        print("{}의 합산 점수 : {}".format(user_name[1],user_score[1]))
+
+
+
+
 
     

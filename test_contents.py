@@ -104,7 +104,7 @@ def make_test() :
             col_answers.insert_one({"answer":answer, "question_id":question_id})
         pass
 
-make_test()
+
 
 # for x in range(question_num) :
 #     question=input("문제{} : ".format(x+1))
