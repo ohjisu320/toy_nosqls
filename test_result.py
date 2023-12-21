@@ -1,6 +1,6 @@
 def connect(col_name):
     from pymongo import MongoClient   # mongodb compass 띄우기
-    mongoClient = MongoClient("mongodb://192.168.0.14:27017")  # 동철님 mongodb에 connection
+    mongoClient = MongoClient("mongodb://192.168.10.235:27017")  # 동철님 mongodb에 connection
     database = mongoClient["toy_nosqls"]  # database 연결하는 변수
     collection = database[col_name]  # collection 작업 변수
     return collection
@@ -71,13 +71,14 @@ def test_result():
         # list_user_names=['one','two'] / list_score_result=[65,0]
         # user_name : one / result_score : 65인 행 넣기
         col_result.insert_one({"user_name":list_user_names[i], "result_score":list_result_score[i]})
-    
+    # y=[] # 출제한 선택지의 개수 = col_answers의 행의 개수 나누기 col_quesitons의 행의 개수
     for x in range(int(len(list_user_names))):
         print("사용자 : {}".format(list_user_names[x]))
-        for y in range(int(len(list_user_answer_sheet))):
-            print("답항 결과 : 1번 : {}, 2번 : {}, 3번 : {}, 4번 : {}, 5번 : {}".format(list_user_answer_sheet[y][0],list_user_answer_sheet[y][1],list_user_answer_sheet[y][2],list_user_answer_sheet[y][3],list_user_answer_sheet[y][4]))        
+        for y in range(int(len(list_user_answer)/(len(list_user_names)))) :
+            print("답항 결과 : {}번 : {}".format(y+1, list_user_answer_sheet[x][y]), end=", "  )      
+        print("")
         print("{}의 합산 점수 : {}".format(list_user_names[x],list_result_score[x]))
-
+test_result()
 
     
 

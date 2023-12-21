@@ -70,7 +70,7 @@
 def dbconnect(collection_name):
     from pymongo import MongoClient
     # mongodb 에 접속 -> 자원에 대한 class
-    mongoclient = MongoClient("mongodb://192.168.0.14:27017")
+    mongoclient = MongoClient("mongodb://192.168.10.235:27017")
     database = mongoclient["toy_nosqls"]
     # collection 작업 
     collection = database[collection_name]
@@ -80,7 +80,7 @@ def dbconnect(collection_name):
 
 def make_test() :
     question_num=int(input("문제 개수를 입력하세요 : "))
-    answer_num=int(input("문항 개수를 입력하세요 : "))
+    answer_num=int(input("선택지 개수를 입력하세요 : "))
 
     print("문제와 선택지를 입력하세요.")
     list_question=[]
@@ -89,10 +89,9 @@ def make_test() :
     col_answers=dbconnect('answers')
     for x in range(question_num) :
         question=input("문제{} : ".format(x+1))    
-        
         answer_list = []
         for y in range(answer_num) :
-            answer=input("문항{} : ".format(y+1))       
+            answer=input("선택지{} : ".format(y+1))       
             answer_list.append(answer)
             
         score=input("점수 : ")
