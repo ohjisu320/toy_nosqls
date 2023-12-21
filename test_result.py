@@ -60,19 +60,15 @@ def test_result():
     
 
     pass 
+
     list_result_score=[] # list_result_score를 생성
     for i in range(int(len(list_user_name)/len(list_answer))):  # range(2) 
         # user_score=[0,30,0,20,15,0,0,0,0,0] 일 때, user_score[0]+[1]+[2]+[3]+[4] / [5]+[6]+[7]+[8]+[9] 끼리 합하기 -- 이 부분 =+ 사용해야 함.
-        score_result=user_score[len(list_answer)*i]+user_score[len(list_answer)*i+1]+user_score[len(list_answer)*i+2]+user_score[len(list_answer)*i+3]+user_score[len(list_answer)*i+4]
-        list_result_score.append(score_result)
-        pass
-    # list_result_score=[] # list_result_score를 생성
-    # for i in range(int(len(list_user_name)/len(list_answer))):  # range(2) 
-    #     # user_score=[0,30,0,20,15,0,0,0,0,0] 일 때, user_score[0]+[1]+[2]+[3]+[4] / [5]+[6]+[7]+[8]+[9] 끼리 합하기 -- 이 부분 =+ 사용해야 함.
-    #     for x in range(len(list_answer)) :
-    #         score_result=+user_score[len(list_answer)*i]
-    #     list_result_score.append(score_result)
-    #     pass
+        score_result_sum=0
+        for x in range(len(list_answer)) :
+            score_result=+user_score[x+len(list_answer)*i]
+            score_result_sum=score_result_sum+score_result 
+        list_result_score.append(score_result_sum)
 
 
 
