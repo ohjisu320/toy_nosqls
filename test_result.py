@@ -43,7 +43,6 @@ def test_result():
                 user_score.append(0)
             pass
     
-    list_user_score =[] # user_score의 묶음
     list_user_id=[] # user_id의 묶음
     for i in range(len(list_user_answer)): # range(10)
         list_user_id.append(list_user_answer[i]['_id']) # list_user_id에 list_user_answer에 있는 모든 id값 append
@@ -70,13 +69,11 @@ def test_result():
             score_result_sum=score_result_sum+score_result 
         list_result_score.append(score_result_sum)
 
-
-
     for i in range(int(len(list_user_name)/len(list_answer))): 
         # list_user_names=['one','two'] / list_score_result=[65,0]
         # user_name : one / result_score : 65인 행 넣기
         col_result.insert_one({"user_name":list_user_names[i], "result_score":list_result_score[i]})
-    # y=[] # 출제한 선택지의 개수 = col_answers의 행의 개수 나누기 col_quesitons의 행의 개수
+
     for x in range(int(len(list_user_names))):
         print("사용자 : {}".format(list_user_names[x]))
         for y in range(int(len(list_user_answer)/(len(list_user_names)))) :
