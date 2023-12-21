@@ -80,7 +80,7 @@ def test_result():
             print("답항 결과 : {}번 : {}".format(y+1, list_user_answer_sheet[x][y]), end=", "  )      
         print("")
         print("{}의 합산 점수 : {}".format(list_user_names[x],list_result_score[x]))
-test_result()
+
 
     
 
